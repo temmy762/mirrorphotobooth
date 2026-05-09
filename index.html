@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1886028051946774');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1886028051946774&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '804363775557428');
+fbq('track', 'PageView');
+
+// Track form submissions
+function trackFormSubmission(formElement, eventName) {
+  formElement.addEventListener('submit', function() {
+    fbq('track', eventName, {
+      content_name: 'Contact Form Submission',
+      content_category: 'form_submission'
+    });
+  });
+}
+
+// Track button clicks
+function trackButtonClicks(selector, eventName) {
+  const buttons = document.querySelectorAll(selector);
+  buttons.forEach(button => {
+    button.addEventListener('click', function() {
+      fbq('track', eventName, {
+        content_name: button.innerText.trim(),
+        content_category: 'button_click'
+      });
+    });
+  });
+}
+
+// Initialize tracking when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Track contact form submission
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    trackFormSubmission(contactForm, 'SubmitBookingRequest');
+  }
+  
+  // Track CTA buttons
+  trackButtonClicks('a[href*="book" i], button:contains("Book")', 'BookNowClick');
+  trackButtonClicks('a[href*="quote" i], button:contains("Quote")', 'GetQuoteClick');
+  trackButtonClicks('a[href*="contact" i], button:contains("Contact")', 'ContactClick');
+});
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=804363775557428&ev=PageView&noscript=1" /></noscript>
+<!-- End Facebook Pixel Code -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magic Mirror Photobooth - Interactive Photo Experience | Aruba</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="alternate icon" type="image/jpeg" href="assets/images/logo.jpeg">
+<link rel="apple-touch-icon" href="assets/images/logo.jpeg">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script id="mailto-submit">
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  function clearError(el){ el.classList.remove('ring-2','ring-red-500'); }
+  function setError(el){ el.classList.add('ring-2','ring-red-500'); }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const to = 'fotografiamigransenor@gmail.com';
+
+    const first = document.getElementById('first_name');
+    const last = document.getElementById('last_name');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const date = document.getElementById('event_date');
+    const eventType = document.getElementById('event_type');
+    const locationEl = document.getElementById('event_location');
+    const subjectEl = document.getElementById('contact-subject');
+    const messageEl = document.getElementById('message');
+
+    // Basic validation
+    const required = [first, last, email, date, eventType, locationEl];
+    let valid = true;
+    required.forEach(el => { clearError(el); if (!el.value.trim()) { setError(el); valid = false; }});
+    if (!valid) { return; }
+
+    const subject = (subjectEl && subjectEl.value.trim()) ? subjectEl.value.trim() : 'New Booking Inquiry';
+    const lines = [
+      `Name: ${first.value.trim()} ${last.value.trim()}`,
+      `Email: ${email.value.trim()}`,
+      `Phone: ${phone.value.trim()}`,
+      `Event Date: ${date.value}`,
+      eventType && eventType.value && eventType.value !== '' ? `Event Type: ${eventType.value}` : null,
+      `Event Location: ${locationEl.value.trim()}`,
+      '',
+      'Additional Details:',
+      (messageEl && messageEl.value.trim()) ? messageEl.value.trim() : '(none)'
+    ].filter(Boolean);
+
+    const body = encodeURIComponent(lines.join('\n'));
+    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${body}`;
+    window.open(mailto, '_blank');
+  });
+});
+</script>
+<script id="prefill-contact-subject">
+document.addEventListener('DOMContentLoaded', function() {
+  const subjectInput = document.getElementById('contact-subject');
+  if (!subjectInput) return;
+  const subjectLinks = document.querySelectorAll('a[href="#contact"][data-subject]');
+  subjectLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      const subj = this.getAttribute('data-subject');
+      if (subj) subjectInput.value = subj;
+    });
+  });
+});
+</script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#2563eb',secondary:'#fbbf24'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+/* Prevent horizontal scroll on mobile */
+html, body { overflow-x: hidden; }
+/* Ensure media doesn't overflow containers */
+img, video { max-width: 100%; height: auto; }
+/* Hide scrollbars on swipe areas */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do you travel to all areas of Aruba?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — we serve events across the entire island of Aruba."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What languages do you speak during events?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We speak English, Papiamento, Spanish, and Dutch."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you work around our venue's schedule?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. We offer flexible hours and coordinate closely with your venue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the Magic Mirror actually work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The interactive mirror greets guests, guides poses and mini-games, captures photos with professional lighting, and enables instant sharing via QR or email."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's included in setup and breakdown?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We handle delivery, setup, on-site operation with an attendant, and breakdown."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you work with other vendors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — we collaborate with planners, venues, DJs, and photographers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between packages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Digital-Only focuses on the mirror experience with digital delivery. Standard adds unlimited photos/GIFs, props, instant sharing, online access, and custom borders. Premium includes everything in Standard plus professional event photography."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How far in advance should we book?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We recommend booking as early as possible; weekends and peak dates fill quickly."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body class="bg-white">
+<nav class="fixed top-0 w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center">
+<a href="#home" class="flex items-center">
+ <img src="assets/images/logo.jpeg" alt="Magic Mirror Photobooth" class="h-10 w-auto"/>
+ <span class="sr-only">Magic Mirror Photobooth</span>
+ </a>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a href="#home" class="text-gray-700 hover:text-primary transition-colors">Home</a>
+<a href="#how-it-works" class="text-gray-700 hover:text-primary transition-colors">How It Works</a>
+<a href="#packages" class="text-gray-700 hover:text-primary transition-colors">Packages</a>
+<a href="#faq" class="text-gray-700 hover:text-primary transition-colors">FAQ</a>
+<a href="#contact" class="text-gray-700 hover:text-primary transition-colors">Contact</a>
+</div>
+<a href="#contact" class="hidden md:inline-flex bg-secondary text-gray-900 px-6 py-2 !rounded-button font-semibold hover:bg-yellow-400 transition-colors whitespace-nowrap mr-2 md:mr-0 ml-auto md:ml-0">
+Book Now
+</a>
+<button class="md:hidden flex items-center justify-center w-8 h-8" id="mobile-menu-btn">
+<i class="ri-menu-line text-xl"></i>
+</button>
+</div>
+</div>
+<div class="md:hidden hidden bg-white border-t" id="mobile-menu">
+<div class="px-4 py-2 space-y-1">
+<a href="#home" class="block px-3 py-2 text-gray-700">Home</a>
+<a href="#how-it-works" class="block px-3 py-2 text-gray-700">How It Works</a>
+<a href="#packages" class="block px-3 py-2 text-gray-700">Packages</a>
+<a href="#faq" class="block px-3 py-2 text-gray-700">FAQ</a>
+<a href="#contact" class="block px-3 py-2 text-gray-700">Contact</a>
+<a href="#contact" class="block mt-2 px-3 py-3 bg-secondary text-gray-900 !rounded-button font-semibold text-center hover:bg-yellow-400 transition-colors" aria-label="Book Now via Contact Section">Book Now</a>
+</div>
+</div>
+</nav>
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+<video class="absolute inset-0 w-full h-full object-cover z-0" src="assets/images/IMG_6976.mp4" autoplay muted loop playsinline preload="auto"></video>
+<div class="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-blue-950/75 to-primary/50 z-10"></div>
+<div class="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<div class="grid lg:grid-cols-2 gap-10 items-center">
+
+<!-- Left: Hero Content -->
+<div class="text-left">
+<span class="inline-block bg-secondary text-gray-900 text-xs font-bold px-4 py-1.5 rounded-full mb-6 tracking-wide uppercase">#1 Magic Mirror Photobooth in Aruba</span>
+<h1 class="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">Aruba's Most Interactive Photo Experience</h1>
+<p class="text-lg text-white/85 mb-8 leading-relaxed">The Magic Mirror engages your guests, guides perfect poses, and delivers instant memories — at weddings, corporate events, birthdays &amp; more.</p>
+<div class="flex flex-col sm:flex-row sm:flex-wrap gap-3 mb-8">
+<div class="flex items-center gap-2 text-white/90">
+<i class="ri-check-double-line text-secondary text-lg"></i>
+<span class="text-sm font-medium">Multilingual Service</span>
+</div>
+<div class="flex items-center gap-2 text-white/90">
+<i class="ri-check-double-line text-secondary text-lg"></i>
+<span class="text-sm font-medium">Flexible Hours</span>
+</div>
+<div class="flex items-center gap-2 text-white/90">
+<i class="ri-check-double-line text-secondary text-lg"></i>
+<span class="text-sm font-medium">Island-Wide Coverage</span>
+</div>
+<div class="flex items-center gap-2 text-white/90">
+<i class="ri-check-double-line text-secondary text-lg"></i>
+<span class="text-sm font-medium">On-Site Attendant Included</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex -space-x-2">
+<img src="assets/images/logo.jpeg" class="w-9 h-9 rounded-full border-2 border-white/70 object-cover" alt="Client">
+<img src="assets/images/logo.jpeg" class="w-9 h-9 rounded-full border-2 border-white/70 object-cover" alt="Client">
+<img src="assets/images/logo.jpeg" class="w-9 h-9 rounded-full border-2 border-white/70 object-cover" alt="Client">
+</div>
+<div>
+<div class="flex text-secondary text-sm">
+<i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+</div>
+<p class="text-white/75 text-xs mt-0.5">Loved by 100+ events across Aruba</p>
+</div>
+</div>
+<div class="mt-8 flex items-center gap-3">
+<a href="#packages" class="text-white/70 hover:text-white text-sm transition-colors flex items-center gap-1">See Packages <i class="ri-arrow-right-line"></i></a>
+</div>
+</div>
+
+<!-- Right: Quote Form Card -->
+<div class="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto">
+<div class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-white/20">
+<!-- Card Header -->
+<div class="bg-gradient-to-r from-primary to-blue-700 px-8 py-5">
+<div class="flex items-center gap-3 mb-1">
+<div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+<i class="ri-camera-lens-line text-white text-sm"></i>
+</div>
+<h2 class="text-xl font-bold text-white">Get Your Free Quote</h2>
+</div>
+<p class="text-blue-100 text-xs pl-11">No commitment &mdash; we'll respond within 24 hrs</p>
+</div>
+<!-- Form Body -->
+<div class="px-7 py-6">
+<form id="hero-quote-form" class="space-y-3.5" novalidate>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label for="hq_first" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">First Name <span class="text-red-400">*</span></label>
+<input id="hq_first" type="text" required autocomplete="given-name" class="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition" placeholder="First">
+</div>
+<div>
+<label for="hq_last" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Last Name <span class="text-red-400">*</span></label>
+<input id="hq_last" type="text" required autocomplete="family-name" class="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition" placeholder="Last">
+</div>
+</div>
+<div>
+<label for="hq_email" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Email Address <span class="text-red-400">*</span></label>
+<div class="relative">
+<span class="absolute inset-y-0 left-3 flex items-center pointer-events-none"><i class="ri-mail-line text-gray-400 text-sm"></i></span>
+<input id="hq_email" type="email" required autocomplete="email" class="w-full pl-9 pr-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition" placeholder="your@email.com">
+</div>
+</div>
+<div>
+<label for="hq_phone" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Phone / WhatsApp</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-3 flex items-center pointer-events-none"><i class="ri-phone-line text-gray-400 text-sm"></i></span>
+<input id="hq_phone" type="tel" autocomplete="tel" class="w-full pl-9 pr-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition" placeholder="+297 745 0763">
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label for="hq_date" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Event Date <span class="text-red-400">*</span></label>
+<input id="hq_date" type="date" required class="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
+</div>
+<div>
+<label for="hq_type" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Event Type <span class="text-red-400">*</span></label>
+<select id="hq_type" required class="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition bg-white">
+<option value="" disabled selected>Select</option>
+<option>Wedding</option>
+<option>Corporate Event</option>
+<option>Birthday</option>
+<option>Anniversary</option>
+<option>Graduation</option>
+<option>Private Party</option>
+<option>Other</option>
+</select>
+</div>
+</div>
+<div>
+<label for="hq_location" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Event Location <span class="text-red-400">*</span></label>
+<div class="relative">
+<span class="absolute inset-y-0 left-3 flex items-center pointer-events-none"><i class="ri-map-pin-line text-gray-400 text-sm"></i></span>
+<input id="hq_location" type="text" required class="w-full pl-9 pr-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition" placeholder="Venue name or address">
+</div>
+</div>
+<div id="hq-error-msg" class="hidden text-xs text-red-500 font-medium">Please fill in all required fields.</div>
+<button type="submit" class="w-full bg-secondary text-gray-900 py-3.5 rounded-xl font-bold text-base hover:bg-yellow-400 active:scale-95 transition-all flex items-center justify-center gap-2 mt-1 shadow-md shadow-yellow-200">
+<i class="ri-send-plane-fill"></i>
+Request My Free Quote
+</button>
+<p class="text-center text-xs text-gray-400">We'll get back to you within 24 hours</p>
+</form>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+<section class="py-16 bg-white border-b border-gray-100">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+<div>
+<span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full mb-3">Why Choose Us</span>
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900">What Makes Us Special in Aruba</h2>
+</div>
+<a href="#contact" class="hidden md:inline-flex items-center gap-2 bg-secondary text-gray-900 font-bold text-sm px-5 py-2.5 rounded-lg hover:bg-yellow-400 transition-colors whitespace-nowrap flex-shrink-0">Get a Free Quote <i class="ri-arrow-right-line"></i></a>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="flex items-start gap-4 p-5 bg-gray-50 rounded-xl border border-gray-100 hover:border-primary/30 hover:shadow-md transition-all duration-200">
+<div class="flex-shrink-0 w-11 h-11 bg-primary/10 rounded-lg flex items-center justify-center">
+<i class="ri-mic-line text-xl text-primary"></i>
+</div>
+<div>
+<h3 class="font-bold text-gray-900 mb-1">Interactive Talking Mirror</h3>
+<p class="text-sm text-gray-500 leading-relaxed">Our mirror talks, guides, and engages — not just a camera</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-5 bg-gray-50 rounded-xl border border-gray-100 hover:border-primary/30 hover:shadow-md transition-all duration-200">
+<div class="flex-shrink-0 w-11 h-11 bg-primary/10 rounded-lg flex items-center justify-center">
+<i class="ri-user-heart-line text-xl text-primary"></i>
+</div>
+<div>
+<h3 class="font-bold text-gray-900 mb-1">True Partnership Service</h3>
+<p class="text-sm text-gray-500 leading-relaxed">People who genuinely care about making your event perfect</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-5 bg-gray-50 rounded-xl border border-gray-100 hover:border-primary/30 hover:shadow-md transition-all duration-200">
+<div class="flex-shrink-0 w-11 h-11 bg-primary/10 rounded-lg flex items-center justify-center">
+<i class="ri-time-line text-xl text-primary"></i>
+</div>
+<div>
+<h3 class="font-bold text-gray-900 mb-1">Fully Flexible Hours</h3>
+<p class="text-sm text-gray-500 leading-relaxed">Early mornings to late nights — we work entirely around your event</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-5 bg-gray-50 rounded-xl border border-gray-100 hover:border-primary/30 hover:shadow-md transition-all duration-200">
+<div class="flex-shrink-0 w-11 h-11 bg-primary/10 rounded-lg flex items-center justify-center">
+<i class="ri-translate text-xl text-primary"></i>
+</div>
+<div>
+<h3 class="font-bold text-gray-900 mb-1">4 Languages Spoken</h3>
+<p class="text-sm text-gray-500 leading-relaxed">English, Papiamento, Spanish &amp; Dutch — we speak your language</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-5 bg-gray-50 rounded-xl border border-gray-100 hover:border-primary/30 hover:shadow-md transition-all duration-200">
+<div class="flex-shrink-0 w-11 h-11 bg-primary/10 rounded-lg flex items-center justify-center">
+<i class="ri-team-line text-xl text-primary"></i>
+</div>
+<div>
+<h3 class="font-bold text-gray-900 mb-1">Vendor Collaboration</h3>
+<p class="text-sm text-gray-500 leading-relaxed">We work seamlessly with venues, planners, DJs &amp; photographers</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-5 bg-primary rounded-xl hover:shadow-lg transition-all duration-200">
+<div class="flex-shrink-0 w-11 h-11 bg-white/20 rounded-lg flex items-center justify-center">
+<i class="ri-calendar-check-line text-xl text-white"></i>
+</div>
+<div>
+<h3 class="font-bold text-white mb-1">Ready to Book?</h3>
+<p class="text-sm text-blue-100 leading-relaxed mb-2.5">Weekends &amp; peak dates fill fast in Aruba</p>
+<a href="#contact" class="inline-block bg-secondary text-gray-900 text-xs font-bold px-4 py-1.5 rounded-lg hover:bg-yellow-400 transition-colors">Get a Free Quote &rarr;</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="events-we-cater" class="py-16 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-10">
+<span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full mb-3">Perfect For</span>
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Events We Cater To</h2>
+<p class="text-gray-500 max-w-xl mx-auto">From intimate celebrations to large corporate gatherings — we bring the magic to every occasion</p>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+<div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300">
+<div class="relative overflow-hidden h-52">
+<img src="https://readdy.ai/api/search-image?query=elegant%20wedding%20ceremony%20setup%20with%20floral%20decorations%2C%20romantic%20lighting%2C%20luxury%20venue%20setting%2C%20professional%20photography%20equipment%20visible&width=400&height=300&seq=wedding-event&orientation=landscape" alt="Weddings" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+<div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+<span class="absolute top-3 left-3 bg-white/95 text-gray-900 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="ri-heart-line text-red-500"></i> Weddings</span>
+</div>
+<div class="p-5">
+<p class="text-sm text-gray-500 mb-3 leading-relaxed">Make your special day even more unforgettable with our interactive mirror experience</p>
+<a href="#contact" data-subject="Request Booking — Wedding" class="inline-flex items-center gap-1 text-primary font-semibold text-sm hover:gap-2 transition-all">Book for Wedding <i class="ri-arrow-right-line"></i></a>
+</div>
+</div>
+<div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300">
+<div class="relative overflow-hidden h-52">
+<img src="https://readdy.ai/api/search-image?query=corporate%20event%20setup%20with%20professional%20networking%20atmosphere%2C%20business%20presentation%20equipment%2C%20modern%20venue%20setting&width=400&height=300&seq=corporate-event&orientation=landscape" alt="Corporate Events" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+<div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+<span class="absolute top-3 left-3 bg-white/95 text-gray-900 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="ri-briefcase-line text-blue-600"></i> Corporate</span>
+</div>
+<div class="p-5">
+<p class="text-sm text-gray-500 mb-3 leading-relaxed">Elevate your business gatherings with a crowd-pleasing interactive experience</p>
+<a href="#contact" data-subject="Request Booking — Corporate Event" class="inline-flex items-center gap-1 text-primary font-semibold text-sm hover:gap-2 transition-all">Book for Corporate <i class="ri-arrow-right-line"></i></a>
+</div>
+</div>
+<div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300">
+<div class="relative overflow-hidden h-52">
+<img src="https://readdy.ai/api/search-image?query=birthday%20party%20celebration%20with%20colorful%20decorations%2C%20party%20atmosphere%2C%20fun%20photo%20opportunities%2C%20entertainment%20setup&width=400&height=300&seq=birthday-event&orientation=landscape" alt="Birthday Parties" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+<div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+<span class="absolute top-3 left-3 bg-white/95 text-gray-900 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="ri-cake-line text-yellow-600"></i> Birthdays</span>
+</div>
+<div class="p-5">
+<p class="text-sm text-gray-500 mb-3 leading-relaxed">Create lasting birthday memories your guests will talk about for years</p>
+<a href="#contact" data-subject="Request Booking — Birthday Party" class="inline-flex items-center gap-1 text-primary font-semibold text-sm hover:gap-2 transition-all">Book for Birthday <i class="ri-arrow-right-line"></i></a>
+</div>
+</div>
+<div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300">
+<div class="relative overflow-hidden h-52">
+<img src="https://readdy.ai/api/search-image?query=graduation%20ceremony%20celebration%20with%20academic%20decorations%2C%20formal%20event%20setup%2C%20professional%20photo%20area&width=400&height=300&seq=special-event&orientation=landscape" alt="Special Events" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+<div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+<span class="absolute top-3 left-3 bg-white/95 text-gray-900 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="ri-award-line text-purple-600"></i> Special Events</span>
+</div>
+<div class="p-5">
+<p class="text-sm text-gray-500 mb-3 leading-relaxed">Graduations, anniversaries, private parties — any occasion worth celebrating</p>
+<a href="#contact" data-subject="Request Booking — Special Event" class="inline-flex items-center gap-1 text-primary font-semibold text-sm hover:gap-2 transition-all">Book for Event <i class="ri-arrow-right-line"></i></a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="how-it-works" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-14">
+<span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full mb-3">The Process</span>
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Experience the Magic</h2>
+<p class="text-gray-500 max-w-xl mx-auto">Four simple steps from setup to instant memories</p>
+</div>
+<div class="relative">
+<div class="hidden lg:block absolute top-[4.5rem] left-[14%] right-[14%] h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent z-0"></div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+<div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+<div class="bg-gray-50 h-60 relative overflow-hidden flex items-center justify-center">
+<img src="assets/images/how-it-works/3A4CE9FB-DBE7-48E1-93F7-DF1D5064C155.png" alt="Step 1 - Mirror Greets Guests" class="w-full h-full object-cover object-center absolute inset-0">
+<div class="relative z-10 w-14 h-14 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md">
+<i class="ri-speak-line text-2xl text-primary"></i>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-7 h-7 bg-secondary rounded-full flex items-center justify-center text-xs font-black text-gray-900 flex-shrink-0">1</span>
+<h3 class="font-bold text-gray-900">Mirror Greets Guests</h3>
+</div>
+<p class="text-sm text-gray-500 leading-relaxed">Animated, talking mirror welcomes and excites your guests</p>
+</div>
+</div>
+<div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+<div class="bg-gray-50 h-60 relative overflow-hidden flex items-center justify-center">
+<img src="assets/images/how-it-works/654D0FE1-D722-4864-9307-AA86478D9035.png" alt="Step 2 - Make Your Favorite Pose" class="w-full h-full object-cover object-center absolute inset-0">
+<div class="relative z-10 w-14 h-14 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md">
+<i class="ri-gamepad-line text-2xl text-primary"></i>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-7 h-7 bg-secondary rounded-full flex items-center justify-center text-xs font-black text-gray-900 flex-shrink-0">2</span>
+<h3 class="font-bold text-gray-900">Make Your Favorite Pose</h3>
+</div>
+<p class="text-sm text-gray-500 leading-relaxed">Interactive prompts make every photo naturally fun and engaging</p>
+</div>
+</div>
+<div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+<div class="bg-gray-50 h-60 relative overflow-hidden flex items-center justify-center">
+<img src="assets/images/how-it-works/FD7F8B43-2334-434E-A103-4AA8C975F1D1.png" alt="Step 3 - Captures Perfect Moments" class="w-full h-full object-cover object-center absolute inset-0">
+<div class="relative z-10 w-14 h-14 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md">
+<i class="ri-camera-line text-2xl text-primary"></i>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-7 h-7 bg-secondary rounded-full flex items-center justify-center text-xs font-black text-gray-900 flex-shrink-0">3</span>
+<h3 class="font-bold text-gray-900">Captures Perfect Moments</h3>
+</div>
+<p class="text-sm text-gray-500 leading-relaxed">High-quality photos with professional lighting every time</p>
+</div>
+</div>
+<div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+<div class="bg-gray-50 h-60 relative overflow-hidden flex items-center justify-center">
+<img src="assets/images/how-it-works/0DBB8DBE-FA7F-4D95-B8EB-8050988FC167.png" alt="Step 4 - Instant Sharing" class="w-full h-full object-cover object-center absolute inset-0">
+<div class="relative z-10 w-14 h-14 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md">
+<i class="ri-share-line text-2xl text-primary"></i>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-7 h-7 bg-secondary rounded-full flex items-center justify-center text-xs font-black text-gray-900 flex-shrink-0">4</span>
+<h3 class="font-bold text-gray-900">Instant Prints &amp; Sharing</h3>
+</div>
+<p class="text-sm text-gray-500 leading-relaxed">Walk away with printed photos &amp; digital copies via QR code or email — instantly</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 text-center">
+<a href="#contact" class="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3.5 rounded-xl hover:bg-blue-700 transition-colors shadow-md">
+<i class="ri-calendar-line"></i>
+Book the Magic Mirror for Your Event
+</a>
+</div>
+</div>
+</section>
+<section id="packages" class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-14">
+<span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full mb-3">Pricing</span>
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Choose Your Magic Mirror Experience</h2>
+<p class="text-gray-500">All prices in AWG &bull; 2 hour minimum for all packages</p>
+</div>
+<div class="grid md:grid-cols-3 gap-6 items-stretch">
+<!-- Digital-Only -->
+<div class="bg-white rounded-2xl border border-gray-200 p-7 flex flex-col shadow-sm hover:shadow-md transition-shadow duration-200">
+<div class="mb-5">
+<span class="inline-block text-xs font-bold uppercase tracking-wider text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-4">Starter</span>
+<h3 class="text-xl font-bold text-gray-900 mb-1">Digital-Only</h3>
+<p class="text-sm text-gray-500">Perfect for smaller events on a budget</p>
+</div>
+<div class="mb-6 pb-6 border-b border-gray-100">
+<div class="flex items-end gap-1">
+<span class="text-4xl font-black text-gray-900">AWG 375</span>
+<span class="text-gray-400 text-sm mb-1.5">/hr</span>
+</div>
+<p class="text-xs text-gray-400 mt-1">2 hour minimum</p>
+</div>
+<ul class="space-y-3 mb-7 flex-1">
+<li class="flex items-start gap-2.5 text-sm text-gray-600">
+<i class="ri-check-line text-green-500 mt-0.5 flex-shrink-0"></i>
+Full Magic Mirror Photobooth Experience
+</li>
+<li class="flex items-start gap-2.5 text-sm text-gray-600">
+<i class="ri-check-line text-green-500 mt-0.5 flex-shrink-0"></i>
+Digital photo sharing via QR code or email
+</li>
+<li class="flex items-start gap-2.5 text-sm text-gray-600">
+<i class="ri-check-line text-green-500 mt-0.5 flex-shrink-0"></i>
+Access to all event images via online gallery
+</li>
+<li class="flex items-start gap-2.5 text-sm text-gray-600">
+<i class="ri-check-line text-green-500 mt-0.5 flex-shrink-0"></i>
+On-site attendant for setup &amp; guest support
+</li>
+</ul>
+<a href="#contact" data-subject="Request Booking — Digital-Only Package" class="block text-center bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-gray-700 transition-colors">
+Book Digital-Only
+</a>
+</div>
+<!-- Standard (Silver) -->
+<div class="bg-white rounded-2xl border border-gray-200 p-7 flex flex-col shadow-sm hover:shadow-md transition-shadow duration-200">
+<div class="mb-5">
+<span class="inline-block text-xs font-bold uppercase tracking-wider text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-4">Silver</span>
+<h3 class="text-xl font-bold text-gray-900 mb-1">Standard</h3>
+<p class="text-sm text-gray-500">Great for birthdays, anniversaries &amp; parties</p>
+</div>
+<div class="mb-6 pb-6 border-b border-gray-100">
+<div class="flex items-end gap-1">
+<span class="text-4xl font-black text-gray-900">AWG 415</span>
+<span class="text-gray-400 text-sm mb-1.5">/hr</span>
+</div>
+<p class="text-xs text-gray-400 mt-1">2 hour minimum</p>
+</div>
+<ul class="space-y-3 mb-7 flex-1">
+<li class="flex items-start gap-2.5 text-sm text-gray-600">
+<i class="ri-check-line text-green-500 mt-0.5 flex-shrink-0"></i>
+Unlimited pictures &amp; GIFs
+</li>
+<li class="flex items-start gap-2.5 text-sm text-gray-600">
+<i class="ri-check-line text-green-500 mt-0.5 flex-shrink-0"></i>
+Fun props for added creativity
+</li>
+<li class="flex items-start gap-2.5 text-sm text-gray-600">
+<i class="ri-check-line text-green-500 mt-0.5 flex-shrink-0"></i>
+Instant sharing of every photo &amp; GIF
+</li>
+<li class="flex items-start gap-2.5 text-sm text-gray-600">
+<i class="ri-check-line text-green-500 mt-0.5 flex-shrink-0"></i>
+Printed &amp; digital photos accessible online
+</li>
+<li class="flex items-start gap-2.5 text-sm text-gray-600">
+<i class="ri-check-line text-green-500 mt-0.5 flex-shrink-0"></i>
+Custom borders designed to match your theme
+</li>
+</ul>
+<a href="#contact" data-subject="Request Booking — Standard Package" class="block text-center bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-gray-700 transition-colors">
+Book Standard
+</a>
+</div>
+<!-- Premium (Gold) -->
+<div class="bg-primary rounded-2xl p-7 flex flex-col shadow-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 w-28 h-28 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+<div class="mb-5 relative z-10">
+<span class="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-gray-900 bg-secondary px-3 py-1 rounded-full mb-4"><i class="ri-star-fill text-yellow-700 text-xs"></i> Most Popular &bull; Gold</span>
+<h3 class="text-xl font-bold text-white mb-1">Premium</h3>
+<p class="text-sm text-blue-100">The full experience — weddings &amp; corporate</p>
+</div>
+<div class="mb-6 pb-6 border-b border-white/20 relative z-10">
+<div class="flex items-end gap-1">
+<span class="text-4xl font-black text-white">AWG 550</span>
+<span class="text-blue-200 text-sm mb-1.5">/hr</span>
+</div>
+<p class="text-xs text-blue-200 mt-1">2 hour minimum</p>
+</div>
+<ul class="space-y-3 mb-7 flex-1 relative z-10">
+<li class="flex items-start gap-2.5 text-sm text-blue-50">
+<i class="ri-check-line text-secondary mt-0.5 flex-shrink-0"></i>
+Professional event photography included
+</li>
+<li class="flex items-start gap-2.5 text-sm text-blue-50">
+<i class="ri-check-line text-secondary mt-0.5 flex-shrink-0"></i>
+Unlimited pictures &amp; GIFs
+</li>
+<li class="flex items-start gap-2.5 text-sm text-blue-50">
+<i class="ri-check-line text-secondary mt-0.5 flex-shrink-0"></i>
+Fun props for added creativity
+</li>
+<li class="flex items-start gap-2.5 text-sm text-blue-50">
+<i class="ri-check-line text-secondary mt-0.5 flex-shrink-0"></i>
+Instant prints &amp; digital sharing via QR/email
+</li>
+<li class="flex items-start gap-2.5 text-sm text-blue-50">
+<i class="ri-check-line text-secondary mt-0.5 flex-shrink-0"></i>
+Printed &amp; digital photos accessible online
+</li>
+<li class="flex items-start gap-2.5 text-sm text-blue-50">
+<i class="ri-check-line text-secondary mt-0.5 flex-shrink-0"></i>
+Custom borders designed to match your theme
+</li>
+</ul>
+<a href="#contact" data-subject="Request Booking — Premium Package" class="block text-center bg-secondary text-gray-900 py-3 rounded-xl font-black hover:bg-yellow-400 transition-colors relative z-10">
+Book Premium — Best Value
+</a>
+</div>
+</div>
+<p class="text-center text-sm text-gray-400 mt-8">Not sure which package suits you? <a href="#contact" class="text-primary font-semibold hover:underline">Contact us</a> and we'll help you choose.</p>
+</div>
+</section>
+<section class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full mb-3">Client Reviews</span>
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-5">What Our Clients Say</h2>
+<div class="inline-flex flex-wrap justify-center gap-5 bg-gray-50 border border-gray-100 rounded-2xl px-8 py-4">
+<div class="flex items-center gap-2">
+<i class="ri-calendar-check-line text-primary text-lg"></i>
+<span class="text-sm font-semibold text-gray-700">100+ Events Served</span>
+</div>
+<div class="w-px bg-gray-200 hidden sm:block"></div>
+<div class="flex items-center gap-2">
+<div class="flex text-secondary text-sm"><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i></div>
+<span class="text-sm font-semibold text-gray-700">5-Star Rated</span>
+</div>
+<div class="w-px bg-gray-200 hidden sm:block"></div>
+<div class="flex items-center gap-2">
+<i class="ri-map-pin-line text-primary text-lg"></i>
+<span class="text-sm font-semibold text-gray-700">Island-Wide in Aruba</span>
+</div>
+</div>
+</div>
+<div class="grid md:grid-cols-3 gap-6 items-stretch">
+<div class="bg-gray-50 rounded-2xl p-7 border border-gray-100 flex flex-col hover:shadow-md transition-shadow duration-200">
+<i class="ri-double-quotes-l text-5xl text-primary/20 mb-3 leading-none"></i>
+<p class="text-gray-700 leading-relaxed flex-1 italic mb-6">"The magic mirror was absolutely the highlight of our wedding! Our guests couldn't stop talking about it. The interactive experience was so much fun and the photos came out beautifully."</p>
+<div class="border-t border-gray-200 pt-5 flex items-center gap-3">
+<img src="assets/images/logo.jpeg" alt="Sarah Martinez" class="w-11 h-11 rounded-full object-cover flex-shrink-0">
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-gray-900 text-sm">Sarah Martinez</h4>
+<p class="text-xs text-gray-500">Bride &middot; Eagle Beach Resort</p>
+</div>
+<div class="flex text-secondary text-sm flex-shrink-0">
+<i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+</div>
+</div>
+</div>
+<div class="bg-primary rounded-2xl p-7 flex flex-col shadow-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-36 h-36 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+<i class="ri-double-quotes-l text-5xl text-white/25 mb-3 leading-none relative z-10"></i>
+<p class="text-blue-50 leading-relaxed flex-1 italic mb-6 relative z-10">"We've used the magic mirror for multiple corporate events and it never fails to impress. The team is professional and the technology is cutting-edge. Highly recommended!"</p>
+<div class="border-t border-white/20 pt-5 flex items-center gap-3 relative z-10">
+<img src="assets/images/logo.jpeg" alt="Michael Chen" class="w-11 h-11 rounded-full object-cover flex-shrink-0">
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-white text-sm">Michael Chen</h4>
+<p class="text-xs text-blue-200">Event Manager &middot; Hyatt Regency</p>
+</div>
+<div class="flex text-secondary text-sm flex-shrink-0">
+<i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+</div>
+</div>
+</div>
+<div class="bg-gray-50 rounded-2xl p-7 border border-gray-100 flex flex-col hover:shadow-md transition-shadow duration-200">
+<i class="ri-double-quotes-l text-5xl text-primary/20 mb-3 leading-none"></i>
+<p class="text-gray-700 leading-relaxed flex-1 italic mb-6">"What an amazing addition to my 50th birthday party! The mirror got everyone involved and created such memorable moments. The instant prints were a perfect keepsake for guests."</p>
+<div class="border-t border-gray-200 pt-5 flex items-center gap-3">
+<img src="assets/images/logo.jpeg" alt="Isabella Rodriguez" class="w-11 h-11 rounded-full object-cover flex-shrink-0">
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-gray-900 text-sm">Isabella Rodriguez</h4>
+<p class="text-xs text-gray-500">50th Birthday Celebration</p>
+</div>
+<div class="flex text-secondary text-sm flex-shrink-0">
+<i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="faq" class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid lg:grid-cols-3 gap-12">
+<div class="lg:col-span-1">
+<span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full mb-4">FAQs</span>
+<h2 class="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+<p class="text-gray-500 text-sm leading-relaxed mb-8">Everything you need to know before booking. Can't find your answer? Reach out directly.</p>
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 space-y-3">
+<p class="text-xs font-bold text-gray-900 uppercase tracking-widest mb-4">Still have questions?</p>
+<a href="https://wa.me/2977450763?text=Hi%21%20I%27d%20like%20to%20know%20more%20about%20the%20Magic%20Mirror%20Photobooth." target="_blank" rel="noopener" class="flex items-center gap-3 p-3 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
+<div class="w-9 h-9 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-whatsapp-line text-white text-lg"></i>
+</div>
+<div>
+<p class="text-sm font-bold text-gray-900">Chat on WhatsApp</p>
+<p class="text-xs text-gray-500">+297 745 0763</p>
+</div>
+</a>
+<a href="mailto:fotografiamigransenor@gmail.com" class="flex items-center gap-3 p-3 bg-primary/5 rounded-xl hover:bg-primary/10 transition-colors">
+<div class="w-9 h-9 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+<i class="ri-mail-line text-white text-lg"></i>
+</div>
+<div>
+<p class="text-sm font-bold text-gray-900">Send an Email</p>
+<p class="text-xs text-gray-500 truncate">fotografiamigransenor@gmail.com</p>
+</div>
+</a>
+</div>
+</div>
+<div class="lg:col-span-2 space-y-3">
+<details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary/30 transition-colors">
+<summary class="flex items-center justify-between cursor-pointer list-none p-5">
+<span class="font-semibold text-gray-900 pr-4">Do you travel to all areas of Aruba?</span>
+<span class="flex-shrink-0 w-8 h-8 bg-gray-50 group-open:bg-primary/10 rounded-full flex items-center justify-center transition-colors">
+<i class="ri-add-line text-gray-400 group-open:hidden"></i><i class="ri-subtract-line text-primary hidden group-open:inline"></i>
+</span>
+</summary>
+<div class="px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4">Yes — we serve events across the entire island. See the Service Areas in our Contact section for examples.</div>
+</details>
+<details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary/30 transition-colors">
+<summary class="flex items-center justify-between cursor-pointer list-none p-5">
+<span class="font-semibold text-gray-900 pr-4">What languages do you speak during events?</span>
+<span class="flex-shrink-0 w-8 h-8 bg-gray-50 group-open:bg-primary/10 rounded-full flex items-center justify-center transition-colors">
+<i class="ri-add-line text-gray-400 group-open:hidden"></i><i class="ri-subtract-line text-primary hidden group-open:inline"></i>
+</span>
+</summary>
+<div class="px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4">We speak English, Papiamento, Spanish, and Dutch — so every guest feels at home.</div>
+</details>
+<details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary/30 transition-colors">
+<summary class="flex items-center justify-between cursor-pointer list-none p-5">
+<span class="font-semibold text-gray-900 pr-4">Can you work around our venue's schedule?</span>
+<span class="flex-shrink-0 w-8 h-8 bg-gray-50 group-open:bg-primary/10 rounded-full flex items-center justify-center transition-colors">
+<i class="ri-add-line text-gray-400 group-open:hidden"></i><i class="ri-subtract-line text-primary hidden group-open:inline"></i>
+</span>
+</summary>
+<div class="px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4">Absolutely. We offer flexible hours — early mornings to late nights — and coordinate closely with your venue.</div>
+</details>
+<details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary/30 transition-colors">
+<summary class="flex items-center justify-between cursor-pointer list-none p-5">
+<span class="font-semibold text-gray-900 pr-4">How does the Magic Mirror actually work?</span>
+<span class="flex-shrink-0 w-8 h-8 bg-gray-50 group-open:bg-primary/10 rounded-full flex items-center justify-center transition-colors">
+<i class="ri-add-line text-gray-400 group-open:hidden"></i><i class="ri-subtract-line text-primary hidden group-open:inline"></i>
+</span>
+</summary>
+<div class="px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4">Our interactive mirror greets guests, guides poses and mini-games, captures photos with professional lighting, and enables instant sharing via QR or email.</div>
+</details>
+<details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary/30 transition-colors">
+<summary class="flex items-center justify-between cursor-pointer list-none p-5">
+<span class="font-semibold text-gray-900 pr-4">What's included in setup and breakdown?</span>
+<span class="flex-shrink-0 w-8 h-8 bg-gray-50 group-open:bg-primary/10 rounded-full flex items-center justify-center transition-colors">
+<i class="ri-add-line text-gray-400 group-open:hidden"></i><i class="ri-subtract-line text-primary hidden group-open:inline"></i>
+</span>
+</summary>
+<div class="px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4">We handle full delivery, setup, on-site operation, and breakdown. An attendant is present throughout to assist guests and ensure everything runs smoothly.</div>
+</details>
+<details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary/30 transition-colors">
+<summary class="flex items-center justify-between cursor-pointer list-none p-5">
+<span class="font-semibold text-gray-900 pr-4">Do you work with other vendors?</span>
+<span class="flex-shrink-0 w-8 h-8 bg-gray-50 group-open:bg-primary/10 rounded-full flex items-center justify-center transition-colors">
+<i class="ri-add-line text-gray-400 group-open:hidden"></i><i class="ri-subtract-line text-primary hidden group-open:inline"></i>
+</span>
+</summary>
+<div class="px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4">Yes — we love collaborating with planners, venues, DJs, and photographers to fit seamlessly into your event.</div>
+</details>
+<details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary/30 transition-colors">
+<summary class="flex items-center justify-between cursor-pointer list-none p-5">
+<span class="font-semibold text-gray-900 pr-4">What's the difference between packages?</span>
+<span class="flex-shrink-0 w-8 h-8 bg-gray-50 group-open:bg-primary/10 rounded-full flex items-center justify-center transition-colors">
+<i class="ri-add-line text-gray-400 group-open:hidden"></i><i class="ri-subtract-line text-primary hidden group-open:inline"></i>
+</span>
+</summary>
+<div class="px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4">Digital-Only covers the full mirror experience with digital delivery. Standard adds unlimited photos/GIFs, props, instant sharing, online access, and custom borders. Premium adds professional event photography on top of everything in Standard.</div>
+</details>
+<details class="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary/30 transition-colors">
+<summary class="flex items-center justify-between cursor-pointer list-none p-5">
+<span class="font-semibold text-gray-900 pr-4">How far in advance should we book?</span>
+<span class="flex-shrink-0 w-8 h-8 bg-gray-50 group-open:bg-primary/10 rounded-full flex items-center justify-center transition-colors">
+<i class="ri-add-line text-gray-400 group-open:hidden"></i><i class="ri-subtract-line text-primary hidden group-open:inline"></i>
+</span>
+</summary>
+<div class="px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-4">As early as possible — weekends and peak dates fill quickly. If your event is coming up soon, contact us and we'll check availability right away.</div>
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="contact" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full mb-3">Book Now</span>
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Ready to Add Magic to Your Event?</h2>
+<p class="text-gray-500 max-w-xl mx-auto">Fill in the form and we'll get back to you within 24 hours. <span class="text-primary font-semibold">Weekends fill fast &mdash; secure your date today.</span></p>
+</div>
+<div class="grid lg:grid-cols-2 gap-10">
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+<h3 class="text-base font-bold text-gray-900 mb-6 flex items-center gap-2"><i class="ri-calendar-line text-primary"></i> Booking Request</h3>
+<form id="contact-form" class="space-y-4">
+<div class="grid md:grid-cols-2 gap-4">
+<div>
+<label for="first_name" class="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1.5">First Name <span class="text-red-400">*</span></label>
+<input id="first_name" name="first_name" required type="text" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm outline-none transition" placeholder="First name">
+</div>
+<div>
+<label for="last_name" class="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1.5">Last Name <span class="text-red-400">*</span></label>
+<input id="last_name" name="last_name" required type="text" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm outline-none transition" placeholder="Last name">
+</div>
+</div>
+<div>
+<label for="email" class="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1.5">Email Address <span class="text-red-400">*</span></label>
+<input id="email" name="email" required type="email" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm outline-none transition" placeholder="your@email.com">
+</div>
+<div>
+<label for="contact-subject" class="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1.5">Subject</label>
+<input id="contact-subject" name="subject" type="text" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm outline-none transition" placeholder="e.g., Request Booking &mdash; Premium Package">
+</div>
+<div>
+<label for="phone" class="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1.5">Phone / WhatsApp</label>
+<input id="phone" name="phone" type="tel" inputmode="tel" pattern="^\+?\d[\d\s-]{6,}$" title="Please enter a valid phone number (e.g., +297 745 0763)" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm outline-none transition" placeholder="+297 745 0763">
+</div>
+<div class="grid md:grid-cols-2 gap-4">
+<div>
+<label for="event_date" class="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1.5">Event Date <span class="text-red-400">*</span></label>
+<input id="event_date" name="event_date" required type="date" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm outline-none transition">
+</div>
+<div>
+<label for="event_type" class="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1.5">Event Type <span class="text-red-400">*</span></label>
+<select id="event_type" name="event_type" required class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm outline-none transition bg-white">
+<option value="" selected disabled>Select type</option>
+<option>Wedding</option>
+<option>Corporate Event</option>
+<option>Birthday</option>
+<option>Anniversary</option>
+<option>Graduation</option>
+<option>Private Party</option>
+<option>Other</option>
+</select>
+</div>
+</div>
+<div>
+<label for="event_location" class="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1.5">Event Location <span class="text-red-400">*</span></label>
+<input id="event_location" name="event_location" required type="text" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm outline-none transition" placeholder="Venue name or address">
+</div>
+<div>
+<label for="message" class="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1.5">Additional Details</label>
+<textarea id="message" name="message" rows="3" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm outline-none transition resize-none" placeholder="Guest count, special requirements, questions..."></textarea>
+</div>
+<button type="submit" class="w-full bg-primary text-white py-3.5 rounded-xl font-bold text-base hover:bg-blue-700 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-md shadow-primary/20">
+<i class="ri-send-plane-fill"></i>
+Send Booking Request
+</button>
+<p class="text-center text-xs text-gray-400">We'll respond within 24 hours &bull; No commitment required</p>
+</form>
+</div>
+<div class="space-y-5">
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+<p class="text-xs font-bold text-gray-900 uppercase tracking-widest mb-5">Contact Information</p>
+<div class="space-y-4">
+<a href="https://wa.me/2977450763?text=Hi%21%20I%27d%20like%20to%20book%20the%20Magic%20Mirror%20Photobooth." target="_blank" rel="noopener" class="flex items-center gap-4 group">
+<div class="w-11 h-11 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-green-200 transition-colors">
+<i class="ri-whatsapp-line text-green-600 text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-gray-400 font-medium">WhatsApp</p>
+<p class="text-sm font-bold text-gray-900">+297 745 0763</p>
+</div>
+</a>
+<a href="tel:+2977450763" class="flex items-center gap-4 group">
+<div class="w-11 h-11 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+<i class="ri-phone-line text-primary text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-gray-400 font-medium">Call Us</p>
+<p class="text-sm font-bold text-gray-900">+297 745 0763</p>
+</div>
+</a>
+<a href="mailto:fotografiamigransenor@gmail.com" class="flex items-center gap-4 group">
+<div class="w-11 h-11 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+<i class="ri-mail-line text-primary text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-gray-400 font-medium">Email</p>
+<p class="text-sm font-bold text-gray-900">fotografiamigransenor@gmail.com</p>
+</div>
+</a>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+<i class="ri-map-pin-line text-primary text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-gray-400 font-medium">Location</p>
+<p class="text-sm font-bold text-gray-900">Island-Wide across Aruba</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+<i class="ri-time-line text-primary text-lg"></i>
+</div>
+<div>
+<p class="text-xs text-gray-400 font-medium">Availability</p>
+<p class="text-sm font-bold text-gray-900">Early mornings to late nights</p>
+</div>
+</div>
+</div>
+</div>
+<div class="grid sm:grid-cols-2 gap-4">
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+<p class="text-xs font-bold text-gray-900 uppercase tracking-widest mb-4">We Speak</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-primary/10 text-primary text-xs font-bold rounded-full">English</span>
+<span class="px-3 py-1.5 bg-primary/10 text-primary text-xs font-bold rounded-full">Papiamento</span>
+<span class="px-3 py-1.5 bg-primary/10 text-primary text-xs font-bold rounded-full">Spanish</span>
+<span class="px-3 py-1.5 bg-primary/10 text-primary text-xs font-bold rounded-full">Dutch</span>
+</div>
+</div>
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+<p class="text-xs font-bold text-gray-900 uppercase tracking-widest mb-4">Follow Us</p>
+<div class="flex flex-col gap-2.5">
+<a href="https://www.instagram.com/magic_mirror_photobooth_aruba?igshid=MWFhZGo4bXE0dGRzMQ%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm text-gray-600 hover:text-pink-600 transition-colors font-medium">
+<i class="ri-instagram-line text-pink-500 text-lg"></i> Instagram
+</a>
+<a href="https://www.facebook.com/share/17Dd6RGsNk/?mibextid=wwXIfr" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm text-gray-600 hover:text-blue-700 transition-colors font-medium">
+<i class="ri-facebook-fill text-blue-600 text-lg"></i> Facebook
+</a>
+<a href="https://www.tiktok.com/@magic.mirror.phot?_t=ZM-8yJ6t6NLYrI&_r=1" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors font-medium">
+<i class="ri-tiktok-fill text-gray-800 text-lg"></i> TikTok
+</a>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+<div class="h-44" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;"></div>
+<div class="p-5">
+<p class="text-xs font-bold text-gray-900 uppercase tracking-widest mb-3">Service Areas</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full">Oranjestad</span>
+<span class="px-2.5 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full">Eagle Beach</span>
+<span class="px-2.5 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full">Palm Beach</span>
+<span class="px-2.5 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full">Noord</span>
+<span class="px-2.5 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">+ All of Aruba</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-gray-900 text-white py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid md:grid-cols-3 gap-8 mb-8">
+<div>
+<div class="flex items-center mb-4">
+<a href="#home" class="flex items-center">
+ <img src="assets/images/logo.jpeg" alt="Magic Mirror Photobooth" class="h-10 w-auto"/>
+</div>
+<p class="text-gray-400 mb-4">Creating unforgettable photo experiences with our interactive magic mirror photobooth in beautiful Aruba.</p>
+<div class="flex space-x-4">
+<a href="https://www.facebook.com/magicmirrorphotobootharuba" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="https://www.instagram.com/magic_mirror_photobooth_aruba" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+<i class="ri-instagram-line"></i>
+</a>
+<a href="https://wa.me/2977450763?text=Hi%21%20I%27d%20like%20to%20book%20the%20Magic%20Mirror%20Photobooth." target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+<i class="ri-whatsapp-line"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-semibold mb-4">Services</h4>
+<ul class="space-y-2 text-gray-400">
+<li><a href="#" class="hover:text-white transition-colors">Wedding Photobooth</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Corporate Events</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Birthday Parties</a></li>
+<li><a href="#" class="hover:text-white transition-colors">Special Occasions</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold mb-4">Quick Links</h4>
+<ul class="space-y-2 text-gray-400">
+<li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+<li><a href="#how-it-works" class="hover:text-white transition-colors">How It Works</a></li>
+<li><a href="#packages" class="hover:text-white transition-colors">Packages</a></li>
+<li><a href="#faq" class="hover:text-white transition-colors">FAQ</a></li>
+<li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm">&copy; 2024 Magic Mirror Photobooth by Fotografia Mi Gran Se&ntilde;or. All rights reserved.</p>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<a href="https://danieloriyomi.tech" target="_blank" class="text-gray-400 hover:text-white text-sm transition-colors">Built By SolvaTree</a>
+</div>
+</div>
+</div>
+</footer>
+<script id="mobile-menu-toggle">
+document.addEventListener('DOMContentLoaded', function() {
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenuBtn.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+});
+});
+</script>
+<script id="hero-quote-form-handler">
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('hero-quote-form');
+  if (!form) return;
+  const errMsg = document.getElementById('hq-error-msg');
+
+  function clearErr(el) {
+    el.classList.remove('ring-2', 'ring-red-400', 'border-red-400');
+    el.classList.add('border-gray-200');
+  }
+  function setErr(el) {
+    el.classList.remove('border-gray-200');
+    el.classList.add('ring-2', 'ring-red-400', 'border-red-400');
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const to = 'fotografiamigransenor@gmail.com';
+    const first = document.getElementById('hq_first');
+    const last = document.getElementById('hq_last');
+    const email = document.getElementById('hq_email');
+    const phone = document.getElementById('hq_phone');
+    const date = document.getElementById('hq_date');
+    const type = document.getElementById('hq_type');
+    const location = document.getElementById('hq_location');
+
+    const required = [first, last, email, date, type, location];
+    let valid = true;
+    required.forEach(el => { clearErr(el); if (!el.value.trim()) { setErr(el); valid = false; } });
+    if (errMsg) errMsg.classList.toggle('hidden', valid);
+    if (!valid) return;
+
+    const lines = [
+      `Name: ${first.value.trim()} ${last.value.trim()}`,
+      `Email: ${email.value.trim()}`,
+      `Phone: ${phone.value.trim() || '(not provided)'}`,
+      `Event Date: ${date.value}`,
+      `Event Type: ${type.value}`,
+      `Event Location: ${location.value.trim()}`,
+    ];
+    const subject = `Quick Quote Request — ${type.value}`;
+    const body = encodeURIComponent(lines.join('\n'));
+    window.open(`mailto:${to}?subject=${encodeURIComponent(subject)}&body=${body}`, '_blank');
+  });
+});
+</script>
+<script id="smooth-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+const links = document.querySelectorAll('a[href^="#"]');
+links.forEach(link => {
+link.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+const offsetTop = targetElement.offsetTop - 80;
+window.scrollTo({
+top: offsetTop,
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+<script id="navbar-scroll">
+document.addEventListener('DOMContentLoaded', function() {
+const navbar = document.querySelector('nav');
+window.addEventListener('scroll', function() {
+if (window.scrollY > 100) {
+navbar.classList.add('shadow-lg');
+} else {
+navbar.classList.remove('shadow-lg');
+}
+});
+});
+</script>
+<!-- First-Visit Quote Popup Modal -->
+<div id="quote-modal" class="fixed inset-0 z-[999] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300" aria-modal="true" role="dialog" aria-label="Get a Free Quote">
+<div class="absolute inset-0 bg-gray-900/70 backdrop-blur-sm" id="quote-modal-backdrop"></div>
+<div class="relative w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden scale-95 transition-transform duration-300" id="quote-modal-card">
+<div class="bg-gradient-to-r from-primary to-blue-700 px-7 py-5">
+<button id="quote-modal-close" class="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors" aria-label="Close popup">
+<i class="ri-close-line text-white text-lg"></i>
+</button>
+<div class="flex items-center gap-3 mb-1">
+<div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+<i class="ri-camera-lens-line text-white text-sm"></i>
+</div>
+<h2 class="text-xl font-bold text-white">Get Your Free Quote</h2>
+</div>
+<p class="text-blue-100 text-xs pl-11">No commitment &mdash; we'll respond within 24 hrs</p>
+</div>
+<div class="px-7 py-5 overflow-y-auto max-h-[72vh]">
+<form id="popup-quote-form" class="space-y-3.5" novalidate>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label for="pq_first" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">First Name <span class="text-red-400">*</span></label>
+<input id="pq_first" type="text" required autocomplete="given-name" class="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition" placeholder="First">
+</div>
+<div>
+<label for="pq_last" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Last Name <span class="text-red-400">*</span></label>
+<input id="pq_last" type="text" required autocomplete="family-name" class="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition" placeholder="Last">
+</div>
+</div>
+<div>
+<label for="pq_email" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Email Address <span class="text-red-400">*</span></label>
+<div class="relative">
+<span class="absolute inset-y-0 left-3 flex items-center pointer-events-none"><i class="ri-mail-line text-gray-400 text-sm"></i></span>
+<input id="pq_email" type="email" required autocomplete="email" class="w-full pl-9 pr-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition" placeholder="your@email.com">
+</div>
+</div>
+<div>
+<label for="pq_phone" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Phone / WhatsApp</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-3 flex items-center pointer-events-none"><i class="ri-phone-line text-gray-400 text-sm"></i></span>
+<input id="pq_phone" type="tel" autocomplete="tel" class="w-full pl-9 pr-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition" placeholder="+297 745 0763">
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label for="pq_date" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Event Date <span class="text-red-400">*</span></label>
+<input id="pq_date" type="date" required class="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
+</div>
+<div>
+<label for="pq_type" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Event Type <span class="text-red-400">*</span></label>
+<select id="pq_type" required class="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition bg-white">
+<option value="" disabled selected>Select</option>
+<option>Wedding</option>
+<option>Corporate Event</option>
+<option>Birthday</option>
+<option>Anniversary</option>
+<option>Graduation</option>
+<option>Private Party</option>
+<option>Other</option>
+</select>
+</div>
+</div>
+<div>
+<label for="pq_location" class="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Event Location <span class="text-red-400">*</span></label>
+<div class="relative">
+<span class="absolute inset-y-0 left-3 flex items-center pointer-events-none"><i class="ri-map-pin-line text-gray-400 text-sm"></i></span>
+<input id="pq_location" type="text" required class="w-full pl-9 pr-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition" placeholder="Venue name or address">
+</div>
+</div>
+<div id="pq-error-msg" class="hidden text-xs text-red-500 font-medium">Please fill in all required fields.</div>
+<button type="submit" class="w-full bg-secondary text-gray-900 py-3.5 rounded-xl font-bold text-base hover:bg-yellow-400 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-md shadow-yellow-200">
+<i class="ri-send-plane-fill"></i>
+Request My Free Quote
+</button>
+<button type="button" id="quote-modal-dismiss" class="w-full text-center text-xs text-gray-400 hover:text-gray-600 transition-colors py-1">
+No thanks, I'll browse first
+</button>
+</form>
+</div>
+</div>
+</div>
+<script id="quote-popup-handler">
+document.addEventListener('DOMContentLoaded', function() {
+  var STORAGE_KEY = 'mmpb_popup_shown';
+  var modal = document.getElementById('quote-modal');
+  var card = document.getElementById('quote-modal-card');
+  var backdrop = document.getElementById('quote-modal-backdrop');
+  var closeBtn = document.getElementById('quote-modal-close');
+  var dismissBtn = document.getElementById('quote-modal-dismiss');
+  var form = document.getElementById('popup-quote-form');
+  var errMsg = document.getElementById('pq-error-msg');
+
+  function openModal() {
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+    modal.classList.add('opacity-100');
+    card.classList.remove('scale-95');
+    card.classList.add('scale-100');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    modal.classList.remove('opacity-100');
+    card.classList.add('scale-95');
+    card.classList.remove('scale-100');
+    document.body.style.overflow = '';
+    try { localStorage.setItem(STORAGE_KEY, '1'); } catch(e) {}
+  }
+
+  if (!localStorage.getItem(STORAGE_KEY)) {
+    setTimeout(openModal, 4000);
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  dismissBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+  function clearErr(el) {
+    el.classList.remove('ring-2', 'ring-red-400', 'border-red-400');
+    el.classList.add('border-gray-200');
+  }
+  function setErr(el) {
+    el.classList.remove('border-gray-200');
+    el.classList.add('ring-2', 'ring-red-400', 'border-red-400');
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var to = 'fotografiamigransenor@gmail.com';
+    var first = document.getElementById('pq_first');
+    var last = document.getElementById('pq_last');
+    var email = document.getElementById('pq_email');
+    var phone = document.getElementById('pq_phone');
+    var date = document.getElementById('pq_date');
+    var type = document.getElementById('pq_type');
+    var location = document.getElementById('pq_location');
+    var required = [first, last, email, date, type, location];
+    var valid = true;
+    required.forEach(function(el) { clearErr(el); if (!el.value.trim()) { setErr(el); valid = false; } });
+    if (errMsg) errMsg.classList.toggle('hidden', valid);
+    if (!valid) return;
+    var lines = [
+      'Name: ' + first.value.trim() + ' ' + last.value.trim(),
+      'Email: ' + email.value.trim(),
+      'Phone: ' + (phone.value.trim() || '(not provided)'),
+      'Event Date: ' + date.value,
+      'Event Type: ' + type.value,
+      'Event Location: ' + location.value.trim(),
+    ];
+    var subject = 'Quote Request — ' + type.value;
+    var body = encodeURIComponent(lines.join('\n'));
+    window.open('mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + body, '_blank');
+    closeModal();
+  });
+});
+</script>
+</body>
+</html>

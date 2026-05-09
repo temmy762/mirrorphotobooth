@@ -1,0 +1,6 @@
+# Large media files (host these on CDN/server separately)
+assets/images/*.mp4
+assets/images/*.mov
+assets/images/*.MP4
+assets/images/*.MOV
+assets/images/gallery/videos/
