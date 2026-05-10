@@ -148,7 +148,15 @@ document.addEventListener('DOMContentLoaded', function() {
 /* Prevent horizontal scroll on mobile */
 html, body { overflow-x: hidden; }
 /* Ensure media doesn't overflow containers */
-img, video { max-width: 100%; height: auto; }
+img { max-width: 100%; height: auto; }
+/* Hero video: full coverage on all devices */
+#home video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
 /* Hide scrollbars on swipe areas */
 .no-scrollbar {
   -ms-overflow-style: none; /* IE/Edge */
@@ -265,8 +273,8 @@ Book Now
 </div>
 </div>
 </nav>
-<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-<video class="absolute inset-0 w-full h-full object-cover z-0" src="assets/images/IMG_6976.mp4" autoplay muted loop playsinline preload="auto"></video>
+<section id="home" class="relative flex items-center justify-center overflow-hidden pt-16" style="min-height: 100svh;">
+<video class="absolute inset-0 w-full h-full z-0" style="object-fit:cover;object-position:center center;" src="assets/images/IMG_6976.mp4" autoplay muted loop playsinline webkit-playsinline preload="auto"></video>
 <div class="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-blue-950/75 to-primary/50 z-10"></div>
 <div class="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 <div class="grid lg:grid-cols-2 gap-10 items-center">
